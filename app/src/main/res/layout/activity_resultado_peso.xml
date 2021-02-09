@@ -56,15 +56,15 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:src="@drawable/shape_retangulo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAvaliacao">
 
     </ImageView>
-
 
     <TextView
         android:id="@+id/tvMsgDinamica"
@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -80,7 +81,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.625"
-        tools:text="Você está dentro do Peso Ideal"/>
+        tools:text="Você está dentro do Peso Ideal" />
 
     <Button
         android:id="@+id/btVoltarCalculo"
