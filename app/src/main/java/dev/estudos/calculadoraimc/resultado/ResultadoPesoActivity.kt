@@ -3,59 +3,80 @@ package dev.estudos.calculadoraimc.resultado
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import dev.estudos.calculadoraimc.R
 import kotlinx.android.synthetic.main.activity_resultado_peso.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ResultadoPesoActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ResultadoPesoViewModel
+    private val viewModel by viewModel<ResultadoPesoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_resultado_peso)
+
         title = "CALCULADORA IMC"
 
-        viewModel = ResultadoPesoViewModel()
-
-        setContentView(R.layout.activity_resultado_peso)
+        setUpInicial()
+        verificarObservers()
         parametrosIniciais()
     }
 
-    fun parametrosIniciais(){
-        val resultadoPeso = intent.getStringExtra(PARAM_PESO) ?: "0.00"
-        tvValor.text = resultadoPeso
-        verificarIMC(resultadoPeso.replace(",", ".").toDouble())
-    }
-
-    fun verificarIMC(resultPesoDouble: Double) {
-        if (resultPesoDouble < 17.00) {
-            tvValor.setTextColor(ContextCompat.getColor(this,R.color.red))
-            tvMsgDinamica.setTextColor(ContextCompat.getColor(this,R.color.red))
-            tvAvaliacao.text = "CUIDADO!!!!"
-            tvMsgDinamica.text = "CUIDADO!!! Você está num nível alto de Magreza."
-        } else if (resultPesoDouble == 17.0 && resultPesoDouble < 18.5) {
-            tvValor.setTextColor(ContextCompat.getColor(this,R.color.yellow))
-            tvMsgDinamica.setTextColor(ContextCompat.getColor(this,R.color.yellow))
-            tvAvaliacao.text = "ATENÇÃO!!!!"
-            tvMsgDinamica.text = "ATENÇÃO!!! Você está abaixo do peso."
-        } else if (resultPesoDouble == 18.5 && resultPesoDouble < 25.0) {
-            tvValor.setTextColor(ContextCompat.getColor(this,R.color.green_app))
-            tvMsgDinamica.setTextColor(ContextCompat.getColor(this,R.color.green_app))
-            tvAvaliacao.text = "PARABÉNS!!!!"
-            tvMsgDinamica.text = "PARABÉNS!!! Você está dentro do peso ideal."
-        } else if (resultPesoDouble == 25.0 && resultPesoDouble <= 30.0) {
-            tvValor.setTextColor(ContextCompat.getColor(this,R.color.yellow))
-            tvMsgDinamica.setTextColor(ContextCompat.getColor(this,R.color.yellow))
-            tvAvaliacao.text = "ATENÇÃO!!!!"
-            tvMsgDinamica.text = "ATENÇÃO!!! Você está com sobrepreso."
-        } else {
-            tvValor.setTextColor(ContextCompat.getColor(this,R.color.red))
-            tvMsgDinamica.setTextColor(ContextCompat.getColor(this,R.color.red))
-            tvAvaliacao.text = "CUIDADO!!!!"
-            tvMsgDinamica.text = "CUIDADO!!! Você está obeso."
+    private fun setUpInicial() {
+        btVoltarCalculo.setOnClickListener{
+            finish()
         }
     }
 
-    companion object{
+    private fun verificarObservers() {
+        viewModel.exibirResultadoSucesso.observe(this, Observer {
+            exibirCor(R.color.green_app)
+            exibirValor(it)
+            exibirMensagens("PARABÉNS!!!!", "PARABÉNS!!! Você está dentro do peso ideal.")
+        })
+        viewModel.exibirResultadoCuidadoMagreza.observe(this, Observer {
+            exibirCor(R.color.red)
+            exibirValor(it)
+            exibirMensagens("CUIDADO!!!!", "CUIDADO!!! Você está num nível alto de Magreza.")
+        })
+        viewModel.exibirResultadoAtencaoMagreza.observe(this, Observer {
+            exibirCor(R.color.yellow)
+            exibirValor(it)
+            exibirMensagens("ATENÇÃO!!!!", "ATENÇÃO!!! Você está abaixo do peso.")
+        })
+        viewModel.exibirResultadoAtencaoSobrepeso.observe(this, Observer {
+            exibirCor(R.color.yellow)
+            exibirValor(it)
+            exibirMensagens("ATENÇÃO!!!!", "ATENÇÃO!!! Você está com sobrepreso.")
+        })
+        viewModel.exibirResultadoCuidadoObeso.observe(this, Observer {
+            exibirCor(R.color.red)
+            exibirValor(it)
+            exibirMensagens("CUIDADO!!!!", "CUIDADO!!! Você está obeso.")
+        })
+    }
+
+    private fun exibirMensagens(avaliacao:String, mensagem: String) {
+        tvAvaliacao.text = avaliacao
+        tvMsgDinamica.text = mensagem
+    }
+
+    private fun exibirValor(it: Double) {
+        tvValor.text = it.toString()
+    }
+
+    private fun exibirCor(color: Int) {
+        tvValor.setTextColor(ContextCompat.getColor(this, color))
+        tvMsgDinamica.setTextColor(ContextCompat.getColor(this, color))
+    }
+
+    fun parametrosIniciais() {
+        val resultadoPeso = intent.getStringExtra(PARAM_PESO) ?: "0.00"
+        viewModel.verificarIMC(resultadoPeso.replace(",", ".").toDouble())
+    }
+
+    companion object {
         private const val PARAM_PESO = "PARAM_PESO"
     }
 }

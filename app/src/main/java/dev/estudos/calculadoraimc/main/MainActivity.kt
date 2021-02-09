@@ -7,16 +7,15 @@ import android.widget.Toast
 import dev.estudos.calculadoraimc.R
 import dev.estudos.calculadoraimc.resultado.ResultadoPesoActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "CALCULADORA IMC"
-
-        viewModel = MainViewModel()
 
         setContentView(R.layout.activity_main)
         setupInicial()
