@@ -17,7 +17,7 @@
         android:text="Resultado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvValor"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvResultado"
-        tools:text="23.88"></TextView>
+        tools:text="23.88"/>
 
     <TextView
         android:id="@+id/tvAvaliacao"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvValor"
-        tools:text="Parabéns!!!!"></TextView>
+        tools:text="Parabéns!!!!"/>
 
 
     <ImageView
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:src="@drawable/shape_retangulo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,18 +79,19 @@
         app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:text="Você está dentro do Peso Ideal"></TextView>
 
+
     <Button
         android:id="@+id/btVoltarCalculo"
-        style="@style/ButtonPrimary.Toggle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:width="350dp"
         android:backgroundTint="@android:color/white"
         android:text="FAZER NOVO CALCULO"
-        android:textColor="@color/black"
-        android:textSize="14dp"
+        android:textColor="@color/gray_dark"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

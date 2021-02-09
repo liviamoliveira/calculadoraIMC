@@ -12,81 +12,154 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:textSize="16sp"
         android:gravity="center"
         android:text="Descubra qual é o seu índice de massa corporal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/elPeso"
+
+    <TextView
+        android:id="@+id/tvPeso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Peso"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Peso"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="84dp"
+        android:src="@drawable/shape_retangulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPeso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:digits="0123456789."/>
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/elAltura"
+    <EditText
+        android:id="@+id/etPeso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Altura"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:hint="Ex: 75.30"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/tvKg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="right"
+        android:text="Kg"
+        android:textColor="@color/green_app"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvAltura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Altura"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAltura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewAltura"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="84dp"
+        android:src="@drawable/shape_retangulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elPeso">
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etAltura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:digits="0123456789."/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/etAltura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:hint="Ex: 1.69"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewAltura"
+        app:layout_constraintStart_toStartOf="@+id/imageViewAltura"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAltura" />
+
+
+    <TextView
+        android:id="@+id/tvM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="right"
+        android:text="M"
+        android:textColor="@color/green_app"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAltura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btCalcularIMC"
-        style="@style/ButtonPrimary.Toggle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:width="350dp"
+        android:backgroundTint="@color/green_app"
         android:text="CALCULAR IMC"
-        android:textSize="14dp"
-        android:enabled="true"
-        android:width="312dp"
-        android:background="@android:color/holo_green_dark"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elAltura" />
+        app:layout_constraintTop_toBottomOf="@+id/etAltura" />
+
+
 
     <Button
         android:id="@+id/btRefazerCalculo"
-        style="@style/ButtonPrimary.Toggle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:textSize="14dp"
-        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="350dp"
+        android:textColor="@color/gray_dark"
         android:backgroundTint="@android:color/white"
         android:text="LIMPAR E FAZER NOVO CALCULO"
         app:layout_constraintEnd_toEndOf="parent"
