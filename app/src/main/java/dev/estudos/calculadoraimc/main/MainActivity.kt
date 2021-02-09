@@ -1,15 +1,22 @@
-package dev.estudos.calculadoraimc
+package dev.estudos.calculadoraimc.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import dev.estudos.calculadoraimc.R
+import dev.estudos.calculadoraimc.resultado.ResultadoPesoActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "CALCULADORA IMC"
+
+        viewModel = MainViewModel()
 
         setContentView(R.layout.activity_main)
         setupInicial()
@@ -17,10 +24,15 @@ class MainActivity : AppCompatActivity() {
 
     fun setupInicial(){
         btCalcularIMC.setOnClickListener {
-            val peso = etPeso.text.toString().toDouble()
-            val altura = etAltura.text.toString().toDouble()
+            if(!etPeso.text.isNullOrBlank() && !etAltura.text.isNullOrBlank()){
+                val peso = etPeso.text.toString().toDouble()
+                val altura = etAltura.text.toString().toDouble()
 
-            calcularIMC(peso,altura)
+                calcularIMC(peso,altura)
+            }
+            else{
+                Toast.makeText(this, "Preencha os campos Peso e Altura.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         btRefazerCalculo.setOnClickListener {
@@ -30,11 +42,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun calcularIMC(peso: Double, altura: Double) {
-       val resultado = peso / altura.pow(2)
-        irParaResultadoPeso(resultado)
+        val resultadoIMC = viewModel.calcularIMC(peso, altura)
+        irParaResultadoPeso(resultadoIMC)
     }
 
-    fun irParaResultadoPeso(resultado: Double) {
+    fun irParaResultadoPeso(resultado: String) {
         val intent = Intent(this, ResultadoPesoActivity::class.java)
         intent.putExtra(PARAM_PESO, resultado)
         startActivity(intent)

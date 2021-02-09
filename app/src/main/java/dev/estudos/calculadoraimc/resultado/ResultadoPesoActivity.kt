@@ -1,12 +1,19 @@
-package dev.estudos.calculadoraimc
+package dev.estudos.calculadoraimc.resultado
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dev.estudos.calculadoraimc.R
+import kotlinx.android.synthetic.main.activity_resultado_peso.*
 
 class ResultadoPesoActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: ResultadoPesoViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "CALCULADORA IMC"
+
+        viewModel = ResultadoPesoViewModel()
 
         setContentView(R.layout.activity_resultado_peso)
         setupInicial()
@@ -18,9 +25,10 @@ class ResultadoPesoActivity : AppCompatActivity() {
     }
 
     fun parametrosIniciais(){
-        val resultadoPeso = intent.getDoubleExtra(PARAM_PESO,0.0)
+        val resultadoPeso = intent.getStringExtra(PARAM_PESO) ?: "0.00"
 
-        val a = ""
+        tvValor.text = resultadoPeso
+
     }
 
     companion object{
