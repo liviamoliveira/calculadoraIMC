@@ -12,9 +12,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:gravity="center"
-        android:text="Descubra qual é o seu índice de massa corporal"
+        android:text="@string/tv_titulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -27,7 +27,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:text="Peso"
+        android:text="@string/tv_peso"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:hint="Ex: 75.30"
+        android:hint="@string/tv_pesoHint"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -69,12 +69,13 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:gravity="right"
-        android:text="Kg"
+        android:text="@string/tv_kg"
         android:textColor="@color/green_app"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
 
     <TextView
@@ -84,7 +85,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:text="Altura"
+        android:text="@string/tv_altura"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewAltura"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +111,7 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:hint="Ex: 1.69"
+        android:hint="@string/tv_alturaHint"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewAltura"
         app:layout_constraintEnd_toEndOf="@+id/imageViewAltura"
@@ -126,13 +127,14 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:gravity="right"
-        android:text="M"
+        android:text="@string/tv_metro"
         android:textColor="@color/green_app"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewAltura"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
     <Button
         android:id="@+id/btCalcularIMC"
@@ -144,7 +146,7 @@
         android:width="350dp"
         android:height="60dp"
         android:backgroundTint="@color/green_app"
-        android:text="CALCULAR IMC"
+        android:text="@string/tv_calcularIMC"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +163,7 @@
         android:layout_marginEnd="32dp"
         android:height="60dp"
         android:backgroundTint="@android:color/white"
-        android:text="LIMPAR E FAZER NOVO CALCULO"
+        android:text="@string/tv_limparCalculo"
         android:textColor="@color/gray_dark"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

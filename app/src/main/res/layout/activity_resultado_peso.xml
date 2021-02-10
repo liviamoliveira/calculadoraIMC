@@ -14,7 +14,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:textSize="24sp"
-        android:text="Resultado"
+        android:text="@string/tv_resultado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -62,9 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAvaliacao">
+        app:layout_constraintTop_toBottomOf="@+id/tvAvaliacao"/>
 
-    </ImageView>
 
     <TextView
         android:id="@+id/tvMsgDinamica"
@@ -92,7 +91,7 @@
         android:layout_marginEnd="32dp"
         android:width="350dp"
         android:backgroundTint="@android:color/white"
-        android:text="FAZER NOVO CALCULO"
+        android:text="@string/btn_novoCalculo"
         android:textColor="@color/gray_dark"
         android:textSize="16sp"
         android:height="60dp"

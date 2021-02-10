@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">CalculadoraIMC</string>
+    <string name="tv_resultado">Resultado</string>
+    <string name="btn_novoCalculo">FAZER NOVO CALCULO</string>
+    <string name="tv_titulo">Descubra qual é o seu índice de massa corporal</string>
+    <string name="tv_peso">Peso</string>
+    <string name="tv_pesoHint"> Ex: 75.30</string>
+    <string name="tv_kg">Kg</string>
+    <string name="tv_altura">Altura</string>
+    <string name="tv_alturaHint"> Ex: 1.69</string>
+       <string name="tv_metro">M</string>
+    <string name="tv_calcularIMC">CALCULAR IMC</string>
+    <string name="tv_limparCalculo">LIMPAR E FAZER NOVO CALCULO</string>
+
+
 </resources>
