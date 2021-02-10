@@ -22,21 +22,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupInicial(){
-        btCalcularIMC.setOnClickListener {
-            if(!etPeso.text.isNullOrBlank() && !etAltura.text.isNullOrBlank()){
-                val peso = etPeso.text.toString().toDouble()
-                val altura = etAltura.text.toString().toDouble()
+        btCalcularIMC.setOnClickListener { btnCalcularIMCOnClick() }
 
-                calcularIMC(peso,altura)
-            }
-            else{
-                Toast.makeText(this, "Preencha os campos Peso e Altura.", Toast.LENGTH_SHORT).show()
-            }
+        btRefazerCalculo.setOnClickListener { btRefazerCalculoOnClick() }
+    }
+
+    fun btRefazerCalculoOnClick() {
+        etPeso.setText("")
+        etAltura.setText("")
+    }
+
+    fun btnCalcularIMCOnClick() {
+        if(!etPeso.text.isNullOrBlank() && !etAltura.text.isNullOrBlank()){
+            val peso = etPeso.text.toString().toDouble()
+            val altura = etAltura.text.toString().toDouble()
+
+            calcularIMC(peso,altura)
         }
-
-        btRefazerCalculo.setOnClickListener {
-            etPeso.setText("")
-            etAltura.setText("")
+        else{
+            Toast.makeText(this, "Preencha os campos Peso e Altura.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -45,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         irParaResultadoPeso(resultadoIMC)
     }
 
-    fun irParaResultadoPeso(resultado: String) {
+    fun irParaResultadoPeso(resultado: Double) {
         val intent = Intent(this, ResultadoPesoActivity::class.java)
         intent.putExtra(PARAM_PESO, resultado)
         startActivity(intent)
