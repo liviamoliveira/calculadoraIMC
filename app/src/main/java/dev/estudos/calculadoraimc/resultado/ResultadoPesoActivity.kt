@@ -7,10 +7,21 @@ import androidx.lifecycle.Observer
 import dev.estudos.calculadoraimc.R
 import kotlinx.android.synthetic.main.activity_resultado_peso.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import dev.estudos.calculadoraimc.model.TipoResultado.*
 
 class ResultadoPesoActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<ResultadoPesoViewModel>()
+
+    class ResultadoConfig(val cor: Int, val avaliacao: String, val mensagem: String)
+
+    val resultadoConfigs = mapOf(
+        MAGREZA to ResultadoConfig(R.color.green_app, "CUIDADO!!!", "Você está num nível alto de Magreza."),
+        ABAIXO_DO_PESO to ResultadoConfig(R.color.green_app, "ATENÇÃO!!!", "Você está abaixo do peso."),
+        PESO_IDEAL to ResultadoConfig(R.color.green_app, "PARABÉNS!!!", "Você está dentro do peso ideal."),
+        SOBREPESO to ResultadoConfig(R.color.green_app, "ATENÇÃO!!!", "Você está com sobrepreso."),
+        OBESIDADE to ResultadoConfig(R.color.green_app, "CUIDADO!!!", "Você está obeso.")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +34,11 @@ class ResultadoPesoActivity : AppCompatActivity() {
         parametrosIniciais()
     }
 
+    fun parametrosIniciais() {
+        val resultadoPeso = intent.getDoubleExtra(PARAM_PESO, 0.0)
+        viewModel.verificarIMC(resultadoPeso)
+    }
+
     private fun setUpInicial() {
         btVoltarCalculo.setOnClickListener{
             finish()
@@ -30,30 +46,12 @@ class ResultadoPesoActivity : AppCompatActivity() {
     }
 
     private fun verificarObservers() {
-        viewModel.exibirResultadoSucesso.observe(this, Observer {
-            exibirCor(R.color.green_app)
-            exibirValor(it)
-            exibirMensagens("PARABÉNS!!!!", "PARABÉNS!!! Você está dentro do peso ideal.")
-        })
-        viewModel.exibirResultadoCuidadoMagreza.observe(this, Observer {
-            exibirCor(R.color.red)
-            exibirValor(it)
-            exibirMensagens("CUIDADO!!!!", "CUIDADO!!! Você está num nível alto de Magreza.")
-        })
-        viewModel.exibirResultadoAtencaoMagreza.observe(this, Observer {
-            exibirCor(R.color.yellow)
-            exibirValor(it)
-            exibirMensagens("ATENÇÃO!!!!", "ATENÇÃO!!! Você está abaixo do peso.")
-        })
-        viewModel.exibirResultadoAtencaoSobrepeso.observe(this, Observer {
-            exibirCor(R.color.yellow)
-            exibirValor(it)
-            exibirMensagens("ATENÇÃO!!!!", "ATENÇÃO!!! Você está com sobrepreso.")
-        })
-        viewModel.exibirResultadoCuidadoObeso.observe(this, Observer {
-            exibirCor(R.color.red)
-            exibirValor(it)
-            exibirMensagens("CUIDADO!!!!", "CUIDADO!!! Você está obeso.")
+        viewModel.exibirResultado.observe(this, Observer { resultado ->
+            val resultadoConfig = resultadoConfigs[resultado.tipoResultado]!!
+
+            exibirCor(resultadoConfig.cor)
+            exibirValor(resultado.imc)
+            exibirMensagens(resultadoConfig.avaliacao, resultadoConfig.mensagem)
         })
     }
 
@@ -69,11 +67,6 @@ class ResultadoPesoActivity : AppCompatActivity() {
     private fun exibirCor(color: Int) {
         tvValor.setTextColor(ContextCompat.getColor(this, color))
         tvMsgDinamica.setTextColor(ContextCompat.getColor(this, color))
-    }
-
-    fun parametrosIniciais() {
-        val resultadoPeso = intent.getStringExtra(PARAM_PESO) ?: "0.00"
-        viewModel.verificarIMC(resultadoPeso.replace(",", ".").toDouble())
     }
 
     companion object {
