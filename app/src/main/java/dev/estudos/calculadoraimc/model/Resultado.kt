@@ -1,14 +1,10 @@
 package dev.estudos.calculadoraimc.model
 
 data class Resultado ( val imc: Double ) {
-    lateinit var tipoResultado: TipoResultado
+    val tipoResultado: TipoResultado = verificarIMC(imc)
 
-    init {
-        verificarIMC(imc)
-    }
-
-    fun verificarIMC(resultPesoDouble: Double) {
-        tipoResultado = when (resultPesoDouble) {
+    private fun verificarIMC(resultPesoDouble: Double): TipoResultado {
+        return when (resultPesoDouble) {
             in 0.00 .. 17.00 -> TipoResultado.MAGREZA
             in 17.0 .. 18.5 -> TipoResultado.ABAIXO_DO_PESO
             in 18.5 .. 25.0 -> TipoResultado.PESO_IDEAL
